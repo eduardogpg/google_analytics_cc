@@ -1,12 +1,18 @@
 import os
 import csv
+
 from pathlib import Path
 from datetime import datetime
+from dotenv import load_dotenv
+
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import DateRange, Dimension, Metric, RunReportRequest
 
+load_dotenv()
+
+GA4_ID = os.getenv('GA4_ID')
+property_id = f"properties/{GA4_ID}"
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
-property_id = "properties/422665589"
 
 client = BetaAnalyticsDataClient()
 
